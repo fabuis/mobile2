@@ -1,0 +1,271 @@
+/* CSS Document */
+@font-face {
+	font-family: FuenteMetronic;
+ 	src: url("../fonts/Coopi/MetronicPro-Bold.otf") format("opentype");
+
+}
+@font-face {
+	font-family: FuenteTheSans;
+ 	src: url("../fonts/Coopi/TheSansCorrespondence.ttf") format("opentype");
+}
+html, body {font-family: FuenteTheSans;}
+h1,h2 {font-family: FuenteMetronic;}
+
+.acciones{
+	display: flex;
+	justify-content: space-around;
+}
+.titulos{
+		font-weight: bold;
+		color: #003D7C;
+	}
+#view{
+
+}
+
+#datos_proceso{
+	padding: 10px 0px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	background-color: lightgray;
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+}
+#datos_proceso h4{
+	color: #003D7C;
+	text-align: center;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 3px #0078BF;
+}
+#datos_proceso .titulos{
+	font-weight: 900;
+		color: black;
+}
+#datos_menu_central{
+	padding-bottom: 10px;
+		margin-top: 5px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	background-color: whitesmoke;
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;	
+}
+#datos_generales{		
+	border-bottom: 1px solid #AACEFF;
+}
+#datos_generales h4{
+	color: white;
+	font-style: oblique;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 2px #003D7C;
+}
+#datos_financieros{	
+	border-bottom: 1px solid #AACEFF;
+}
+#datos_financieros h4{
+	color: white;
+	font-style: oblique;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 2px #003D7C;
+}
+
+#datos_codeudores{
+	border-bottom: 1px solid #AACEFF;
+	padding-bottom: 5px;
+}
+#datos_codeudores h4{
+	color: white;
+	font-style: oblique;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 2px #003D7C;
+}
+#datos_bienes{
+		
+}
+#datos_bienes h4{
+	color: white;
+	font-style: oblique;
+	font-size: 1.5em;
+	text-shadow: 1px 1px 2px #003D7C;
+}
+#datos_actuaciones{
+padding-bottom: 10px;
+	
+		margin: 5px 0px 20px;
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+	box-shadow: 0px 0px 5px 0px rgba(0,60,163,1);
+
+	border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;		
+		
+}
+.btn-circle-mini{
+	width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 8px;
+  border-radius: 30px;
+}
+	
+#tabla_procesos{
+  	color: #003D7C;
+  	width:100%;
+	 -moz-border-radius: 5px !important;
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+#tabla_procesos tr:hover td {
+  background-color: #ddd !important
+}
+
+#tabla_procesos tr {
+  border-color: #46637f;
+}
+#tabla_procesos th,
+#tabla_procesos td {
+	width: 4em;
+  margin: .3em 1.3em;
+  padding: 2px 5px;
+
+}
+#tabla_procesos th{
+	text-align:center;	
+	background-color: #46637f;
+	color: white;
+
+}
+#tabla_procesos th:last-child{
+	border-top-right-radius: 8px;
+}
+#tabla_procesos th:first-child{
+	border-top-left-radius: 8px;
+}
+
+#tabla_procesos td {
+  text-align:right;
+	border: 1px #B1BCFF solid;
+}
+
+#tabla_procesos td:before {
+  
+}
+#tabla_procesos tbody td:nth-child(1){
+	text-align:center;
+	width: 3%;
+}
+#tabla_procesos tbody td:nth-child(2){
+	text-align:center;
+	width: 10%;
+}
+#tabla_procesos tbody td:nth-child(3){
+	text-align:left;
+}
+#tabla_procesos tbody td:nth-child(4){
+	text-align:center;
+	width: 10%;
+}
+#tabla_procesos tbody tr{
+	background-color: aliceblue;
+}
+#ultima_td{
+
+}
+
+/*TABLA BIENES DEL DEUDOR*/
+#tabla_bienes_deudor{
+  color: #003D7C;
+  width:100%;
+}
+#tabla_bienes_deudor tr {
+  border-color: #46637f;
+}
+#tabla_bienes_deudor th{
+	background-color: #46637f;
+	text-align:center;	
+	color: white;
+}
+#tabla_bienes_deudor th:last-child{
+	border-top-right-radius: 8px;
+}
+#tabla_bienes_deudor th:first-child{
+	border-top-left-radius: 8px;
+}
+
+
+#tabla_bienes_deudor td {
+	width: 4em;
+  	margin: .1em 1.3em;
+  	padding: 0px 5px;
+  	text-align:right;
+	border: 1px #B1BCFF solid;
+}
+
+#tabla_bienes_deudor td:before {
+  color: #003D7C;
+}
+#tabla_bienes_deudor tbody td:nth-child(1){
+	text-align:center;
+	width: 20%;
+}	
+#tabla_bienes_deudor tbody td:nth-child(2){
+	text-align:left;
+}
+#tabla_bienes_deudor tbody tr{
+	background-color: aliceblue;
+}
+
+/*TABLA BIENES DEL CODEUDOR*/
+#tabla_bienes_codeudor{
+  color: #003D7C;
+  width:100%;
+}
+#tabla_bienes_codeudor tr {
+  border-color: #46637f;
+
+}
+#tabla_bienes_codeudor th{
+	background-color: #46637f;
+	text-align:center;	
+	color: white;
+}
+#tabla_bienes_codeudor th:last-child{
+	border-top-right-radius: 8px;
+}
+#tabla_bienes_codeudor th:first-child{
+	border-top-left-radius: 8px;
+}
+#tabla_bienes_codeudor td {
+	width: 4em;
+  margin: .1em 1.3em;
+  padding: 0px 5px;
+}
+#tabla_bienes_codeudor td {
+	border: 1px #B1BCFF solid;
+}
+#tabla_bienes_codeudor td:before {
+  color: #003D7C;
+}
+#tabla_bienes_codeudor tbody td:nth-child(1){
+	text-align:center;
+	width: 20%;
+}	
+#tabla_bienes_codeudor tbody td:nth-child(2){
+	text-align:center;
+	width: 20%;
+}
+#tabla_bienes_codeudor tbody td:nth-child(3){
+	text-align:left;
+}
+
+#tabla_bienes_codeudor tbody tr{
+	background-color: aliceblue;
+}
+
