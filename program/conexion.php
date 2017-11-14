@@ -5,8 +5,8 @@
 
 $servidor='localhost';
 $usuario='root';
-$contrasena='Admin2015*';
-$bd='mobile';
+$contrasena='';
+$bd='tienda';
 
 // Conexión con los datos del 'config.ini' 
 $connection = new mysqli($servidor, $usuario ,$contrasena, $bd); 

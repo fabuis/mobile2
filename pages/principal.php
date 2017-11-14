@@ -316,6 +316,14 @@ if(!isset($_SESSION["username"])){
             <!-- /.row -->
 
             <!-- /.row -->
+                  <div class="card mb-3">
+                        <div class="card-header">
+                          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+                        <div class="card-body">
+                          <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -338,6 +346,11 @@ if(!isset($_SESSION["username"])){
 
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
+
+    <!-- Custom scripts for this page-->
+    
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../js/sb-admin-charts.min.js"></script>
 
 </body>
 
