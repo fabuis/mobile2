@@ -73,3 +73,22 @@
 
 
  ?>
+
+ <?php
+
+ //consultar ventas por meses
+if (isset($_REQUEST['mes'])){
+
+				$result = $connection->query("SELECT SUM(valor_venta) as total,DAY(fecha_venta) as dia FROM tblventas WHERE YEAR(fecha_venta) = 2017 AND MONTH(fecha_venta) = 11 GROUP BY DAY(fecha_venta)") or trigger_error($connection->error);
+
+			while ($data = $result->fetch_assoc()) {
+					$arreglo01[] = array_map('utf8_encode', $data);
+
+			}
+
+	echo json_encode($arreglo01);
+
+}
+
+//consultar ventas por meses
+ ?>

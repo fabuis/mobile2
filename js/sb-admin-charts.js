@@ -1,9 +1,12 @@
 $(document).ready(function() {
   ///inicio
     graficaano(2017);
+    graficameses(11);
     //llenar años en consulta_años
       $( "#consulta_a" ).load( "../Json/procesar.php?consulta_a" );
     //llenar años en consulta_años
+
+
 
     //cambiar año en graficaano
       $( "#consulta_a" ).change(function() {
@@ -23,6 +26,8 @@ $(document).ready(function() {
 });
 
 
+
+//Funcion grafica por año-------------------------------------------------------------------
 graficaano = function(año){
       //grafica año
         $.ajax({
@@ -31,7 +36,7 @@ graficaano = function(año){
           data: {'meses':'meses','ano': año},
         })
         .done(function(data) {
-          console.log(data);
+          //console.log(data);
                                       var valores = eval(data);
 
                                     var e   = valores[0];
@@ -83,7 +88,7 @@ graficaano = function(año){
                                       yAxes: [{
                                         ticks: {
                                           min: 0,
-                                          max: 40000000,
+                                          max: 90000000,
                                           maxTicksLimit: 5
                                         },
                                         gridLines: {
@@ -105,6 +110,100 @@ graficaano = function(año){
         });
       //grafica año
 }
+//Funcion grafica por año-------------------------------------------------------------------
+
+//Funcion grafica por meses-------------------------------------------------------------------
+graficameses = function(mes){
+      //grafica año
+        $.ajax({
+          url: '../Json/procesar.php',
+          type: 'POST',
+          data: {'mes':'mes'},
+        })
+        .done(function(result) {
+          console.log(result);
+                             //var valores = eval(data);
+
+                             var Labels = [],Data=[];
+                             DatosLabels = JSON.parse(result);
+                             Datostotal = JSON.parse(result);
+
+                              
+
+                              console.log(DatosLabels[0]['total']);
+
+                                        for(var i in DatosLabels){
+                                            Labels.push(DatosLabels[i]['dia'].slice(0).toString());
+                                          }
+
+                                        for(var i in Datostotal){
+                                            Data.push(Datostotal[i]['total'].slice(0));
+                                          }
+
+
+                                console.log(Labels);
+                                console.log(Data);
+
+                                        
+                                var ctx = document.getElementById("ventasmensuales");
+                                var myLineChart = new Chart(ctx, {
+                                  type: 'line',
+                                  data: {
+                                    labels: Labels,
+                                    datasets: [{
+                                      label: "Total ventas $",
+                                      lineTension: 0.3,
+                                      backgroundColor: "rgba(2,117,216,0.2)",
+                                      borderColor: "rgba(2,117,216,1)",
+                                      pointRadius: 5,
+                                      pointBackgroundColor: "rgba(2,117,216,1)",
+                                      pointBorderColor: "rgba(255,255,255,0.8)",
+                                      pointHoverRadius: 5,
+                                      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                      pointHitRadius: 20,
+                                      pointBorderWidth: 2,
+                                      data: Data
+                                    }],
+                                  },
+                                  options: {
+                                    scales: {
+                                      xAxes: [{
+                                        time: {
+                                          unit: 'date'
+                                        },
+                                        gridLines: {
+                                          display: false
+                                        },
+                                        ticks: {
+                                          maxTicksLimit: 7
+                                        }
+                                      }],
+                                      yAxes: [{
+                                        ticks: {
+                                          min: 0,
+                                          max: 5000000,
+                                          maxTicksLimit: 5
+                                        },
+                                        gridLines: {
+                                          color: "rgba(0, 0, 0, .125)",
+                                        }
+                                      }],
+                                    },
+                                    legend: {
+                                      display: false
+                                    }
+                                  }
+                                });
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+          console.log("complete");
+        });
+      //grafica año
+}
+//Funcion grafica por meses-------------------------------------------------------------------
 
 // -- Bar Chart Example
 var ctx = document.getElementById("myBarChart");
