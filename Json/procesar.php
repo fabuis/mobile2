@@ -74,12 +74,35 @@
 
  ?>
 
+ <?php 
+
+		if (isset($_REQUEST['consulta_b'])) {
+
+				$result = $connection->query("SELECT DISTINCT(MONTH(tblventas.fecha_venta)) as mes FROM tblventas") or trigger_error($connection->error);
+
+					while ($row = $result->fetch_assoc()) {
+
+						echo '<option value="'.$row["mes"].'">'.$row["mes"].'</option>';
+
+					}
+		
+		}
+
+
+ ?>
+
  <?php
 
  //consultar ventas por meses
 if (isset($_REQUEST['mes'])){
 
-				$result = $connection->query("SELECT SUM(valor_venta) as total,DAY(fecha_venta) as dia FROM tblventas WHERE YEAR(fecha_venta) = 2017 AND MONTH(fecha_venta) = 11 GROUP BY DAY(fecha_venta)") or trigger_error($connection->error);
+		if (isset($_REQUEST['buscarmes'])) {
+			$buscarmes = $_REQUEST['buscarmes'];
+		}else{
+			$buscarmes = 1;
+		}
+
+				$result = $connection->query("SELECT SUM(valor_venta) as total,DAY(fecha_venta) as dia FROM tblventas WHERE YEAR(fecha_venta) = 2017 AND MONTH(fecha_venta) = '$buscarmes' GROUP BY DAY(fecha_venta)") or trigger_error($connection->error);
 
 			while ($data = $result->fetch_assoc()) {
 					$arreglo01[] = array_map('utf8_encode', $data);

@@ -342,7 +342,7 @@ if(!isset($_SESSION["username"])){
                           <i class="fa fa-area-chart"></i><h2>Ventas Mensuales de la tienda</h2>
                                     <div class="form-group">
                                             <label>Seleccione mes:</label>
-                                            <select name="consulta_m" id="consulta_a" class="form-control">
+                                            <select name="consulta_m" id="consulta_m" class="form-control">
                                                 <!-- Se llena por ajax desde ../Json/procesar.php -->
                                             </select>
                                         </div>

@@ -5,6 +5,9 @@ $(document).ready(function() {
     //llenar años en consulta_años
       $( "#consulta_a" ).load( "../Json/procesar.php?consulta_a" );
     //llenar años en consulta_años
+        //llenar años en consulta_años
+      $( "#consulta_m" ).load( "../Json/procesar.php?consulta_b" );
+    //llenar años en consulta_años
 
 
 
@@ -14,6 +17,13 @@ $(document).ready(function() {
           graficaano(año);
       });
     //cambiar año en graficaano
+
+        //cambiar mes en graficameses
+      $( "#consulta_m" ).change(function() {
+         buscarmes = $( "#consulta_m" ).val();
+         graficameses(buscarmes);
+       });
+    //cambiar mes en graficameses
 
   // Chart.js scripts
     // -- Set new default font family and font color to mimic Bootstrap's default styling
@@ -52,6 +62,10 @@ graficaano = function(año){
                                     var n   = valores[10];
                                     var d   = valores[11];
                                         
+    
+                                var canvas = $('#ventasanuales')[0]; 
+                                canvas.width = canvas.width; 
+
                                 var ctx = document.getElementById("ventasanuales");
                                 var myLineChart = new Chart(ctx, {
                                   type: 'line',
@@ -88,7 +102,7 @@ graficaano = function(año){
                                       yAxes: [{
                                         ticks: {
                                           min: 0,
-                                          max: 90000000,
+                                          max: 1000000000,
                                           maxTicksLimit: 5
                                         },
                                         gridLines: {
@@ -113,12 +127,12 @@ graficaano = function(año){
 //Funcion grafica por año-------------------------------------------------------------------
 
 //Funcion grafica por meses-------------------------------------------------------------------
-graficameses = function(mes){
+graficameses = function(buscarmes){
       //grafica año
         $.ajax({
           url: '../Json/procesar.php',
           type: 'POST',
-          data: {'mes':'mes'},
+          data: {'mes':'mes','buscarmes': buscarmes},
         })
         .done(function(result) {
           console.log(result);
@@ -144,7 +158,10 @@ graficameses = function(mes){
                                 console.log(Labels);
                                 console.log(Data);
 
-                                        
+
+                                var canvas = $('#ventasmensuales')[0]; 
+                                canvas.width = canvas.width;    
+
                                 var ctx = document.getElementById("ventasmensuales");
                                 var myLineChart = new Chart(ctx, {
                                   type: 'line',
@@ -181,7 +198,7 @@ graficameses = function(mes){
                                       yAxes: [{
                                         ticks: {
                                           min: 0,
-                                          max: 5000000,
+                                          max: 9000000,
                                           maxTicksLimit: 5
                                         },
                                         gridLines: {
