@@ -62,7 +62,7 @@ if(!isset($_SESSION["username"])){
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a href="principal.php" style="padding-left: 50px;"><img src="../images/Módulo jurídico_horizontal.png" width="130px" alt=""></a>
+                
             </div>
             <!-- /.navbar-header -->
 
@@ -314,12 +314,20 @@ if(!isset($_SESSION["username"])){
                 </div>
             </div>
             <!-- juan -->
+
             <div class="row">
                   <div class="card mb-3">
                         <div class="card-header">
-                          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+                          <i class="fa fa-area-chart"></i><h2>Ventas anuales de la tienda</h2>
+                                    <div class="form-group">
+                                            <label>Seleccione año:</label>
+                                            <select name="consulta_a" id="consulta_a" class="form-control">
+                                                <!-- Se llena por ajax desde ../Json/procesar.php -->
+                                            </select>
+                                        </div>
+                          </div>
                         <div class="card-body">
-                          <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                          <canvas id="ventasanuales" width="100%" height="30"></canvas>
                         </div>
                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
@@ -393,7 +401,7 @@ if(!isset($_SESSION["username"])){
     <!-- Custom scripts for this page-->
     
     <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../js/sb-admin-charts.min.js"></script>
+    <script src="../js/sb-admin-charts.js"></script>
 
 </body>
 
