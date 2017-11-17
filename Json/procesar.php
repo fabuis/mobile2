@@ -114,4 +114,40 @@ if (isset($_REQUEST['mes'])){
 }
 
 //consultar ventas por meses
+
+
+ //consultar ventas por ciudades
+if (isset($_REQUEST['ciudades'])){
+
+
+				$result = $connection->query("select tv.id_dispositivo AS id_dispositivo,count(tv.id_dispositivo) AS totalventas,td.nombre AS nombre,tt.ciudad AS ciudad from ((tblventas tv join tbldispositivos td on((tv.id_dispositivo = td.id_dispositivo))) join tblterceros tt on((tv.id_tercero = tt.id_tercero))) group by tt.ciudad") or trigger_error($connection->error);
+
+			while ($data = $result->fetch_assoc()) {
+					$arreglo01[] = array_map('utf8_encode', $data);
+
+			}
+
+	echo json_encode($arreglo01);
+
+}
+
+//consultar ventas por ciudades
+
+
+ //consultar TOP 10
+if (isset($_REQUEST['pais'])){
+
+
+				$result = $connection->query("select sum(tv.id_dispositivo) AS total,td.nombre AS nombre from (tblventas tv join tbldispositivos td on((tv.id_dispositivo = td.id_dispositivo))) group by tv.id_dispositivo order by sum(tv.id_dispositivo) desc limit 10") or trigger_error($connection->error);
+
+			while ($data = $result->fetch_assoc()) {
+					$arreglo01[] = array_map('utf8_encode', $data);
+
+			}
+
+	echo json_encode($arreglo01);
+
+}
+
+//consultar TOP 10
  ?>

@@ -2,6 +2,8 @@ $(document).ready(function() {
   ///inicio
     graficaano(2017);
     graficameses(11);
+    graficaciudades();
+    graficapais();
     //llenar años en consulta_años
       $( "#consulta_a" ).load( "../Json/procesar.php?consulta_a" );
     //llenar años en consulta_años
@@ -101,7 +103,7 @@ graficaano = function(año){
                                       }],
                                       yAxes: [{
                                         ticks: {
-                                          min: 0,
+                                          min: 100000,
                                           max: 1000000000,
                                           maxTicksLimit: 5
                                         },
@@ -135,7 +137,7 @@ graficameses = function(buscarmes){
           data: {'mes':'mes','buscarmes': buscarmes},
         })
         .done(function(result) {
-          console.log(result);
+          //console.log(result);
                              //var valores = eval(data);
 
                              var Labels = [],Data=[];
@@ -144,7 +146,7 @@ graficameses = function(buscarmes){
 
                               
 
-                              console.log(DatosLabels[0]['total']);
+                              //console.log(DatosLabels[0]['total']);
 
                                         for(var i in DatosLabels){
                                             Labels.push(DatosLabels[i]['dia'].slice(0).toString());
@@ -155,8 +157,8 @@ graficameses = function(buscarmes){
                                           }
 
 
-                                console.log(Labels);
-                                console.log(Data);
+                                //console.log(Labels);
+                                //console.log(Data);
 
 
                                 var canvas = $('#ventasmensuales')[0]; 
@@ -222,17 +224,51 @@ graficameses = function(buscarmes){
 }
 //Funcion grafica por meses-------------------------------------------------------------------
 
-// -- Bar Chart Example
+
+//Funcion grafica por ciudad -------------------------------------------------------------------
+
+graficaciudades = function(){
+
+  $.ajax({
+    url: '../Json/procesar.php',
+    type: 'POST',
+    data: {'ciudades': 'ciudades'},
+  })
+  .done(function(result) {
+    //console.log(result);
+    //crear grafica
+    // -- Bar Chart Example
+
+     var Labels = [],Data=[],Celular=[];
+
+                             DatosLabels = JSON.parse(result);
+                             Datostotal = JSON.parse(result);
+                             DatosCelular = JSON.parse(result);                       
+
+                              //console.log(DatosLabels[0]['total']);
+
+                                        for(var i in DatosLabels){
+                                            Labels.push(DatosLabels[i]['ciudad'].slice(0).toString());
+                                          }
+
+                                        for(var i in Datostotal){
+                                            Data.push(Datostotal[i]['totalventas'].slice(0));
+                                          }
+
+
+                                //console.log(Labels);
+                                //console.log(Data);
+
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: Labels,
     datasets: [{
-      label: "Revenue",
+      label: 'IPHONE 7 PLUS',
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: Data,
     }],
   },
   options: {
@@ -245,14 +281,14 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 0
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
-          maxTicksLimit: 5
+          max: 100,
+          maxTicksLimit: 10
         },
         gridLines: {
           display: true
@@ -264,20 +300,76 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+    //crear grafica
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
+}
+
+//Funcion grafica por ciudad -------------------------------------------------------------------
 
 
 
+//Funcion grafica por pais -------------------------------------------------------------------
+
+graficapais = function(){
+  $.ajax({
+  url: '../Json/procesar.php',
+  type: 'POST',
+  data: {'pais': 'pais'},
+})
+.done(function(result) {
+  console.log("success");
+  //hacer la grafica
+       var Labels = [],Data=[];
+
+                             DatosLabels = JSON.parse(result);
+                             Datostotal = JSON.parse(result);
+                  
+
+                              //console.log(DatosLabels[0]['total']);
+
+                                        for(var i in DatosLabels){
+                                            Labels.push(DatosLabels[i]['nombre'].slice(0).toString());
+                                          }
+
+                                        for(var i in Datostotal){
+                                            Data.push(Datostotal[i]['total'].slice(0));
+                                          }
 
 
+                                console.log(Labels);
+                                console.log(Data);
 // -- Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
+    labels: Labels,
     datasets: [{
-      data: [12.21, 15.58, 11.25, 8.32],
-      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+      data: Data,
+      backgroundColor: ['#00007f', '#000099', '#0000b2', '#0000cc', '#0000e5', '#0000ff', '#1919ff', '#3232ff', '#4c4cfe', '#6565ff'],
     }],
   },
 });
+
+                                
+
+
+})
+.fail(function() {
+  console.log("error");
+})
+.always(function() {
+  console.log("complete");
+});
+
+}
+
+//Funcion grafica por pais -------------------------------------------------------------------
+
