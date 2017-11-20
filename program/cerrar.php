@@ -2,5 +2,5 @@
 session_start();
 session_destroy();
 echo 'Cerraste sesión';
-echo '<script> window.location="login.php"; </script>';
+echo '<script> window.location="../pages/login.php"; </script>';
 ?>

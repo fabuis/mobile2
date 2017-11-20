@@ -2,9 +2,10 @@
 @session_start();  
 if($_SESSION["autentica"] != "OK")
 { 
-  header("Location: ../program/login.php"); 
+  header("Location: ..program/login.php"); 
   exit(); 
 } 
+include "../program/funciones.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,6 +38,9 @@ if($_SESSION["autentica"] != "OK")
 
     <!-- Custom Fonts -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+     <!-- Tablas -->
+    <link href="../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
 	 <!-- ESTILO PERSONAL -->
     <link href="../css/estilo.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,7 +98,7 @@ if($_SESSION["autentica"] != "OK")
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                         <li>
+                        <li>
                             <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                         </li>
                         <li>
@@ -188,199 +192,33 @@ if($_SESSION["autentica"] != "OK")
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Inicio</h1>
+                    <h1 class="page-header"> Dispositivos</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            
-              <div class="row">
-               
-                <div class="col-lg-6 col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-body">
-                            <div>
-                            	Hola, Bienvenido al Módulo Mobile
-                            </div> <br>
-                            <div>
-                            	En este aplicativo el usuario tendrá la posibilidad de hacer inventario, ingresos y salidas de dispositivos mobiles en la tienda determinada.
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               <!--- <div class="col-lg-6 col-md-12">
-					<img src="../images/Módulo jurídico_horizontal.png" width="50%" alt="" class="text-right">
-                </div> -->
-            </div>
-            <hr>
-            <div class="nav-divider">Accesos Rápidos</div>
-            <hr>
-            <!-- /.row -->
+     
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-history fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Inventario</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="inventario.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-university fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Facturas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="facturacion.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver Detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-group fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Usuarios</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="usuarios.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver Detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-car fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Salidas</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="salidas.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Ver Detalles</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+    			<div class="col-lg-12">
+            	<div class="panel-body">
+              		<div class="dataTable_wrapper">
+                    	<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:13px">
+                        	<thead>
+                            <tr>
+                                <th>Marca</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Costo</th>
+                            </tr>
+                            </thead>
+                      	<tbody>
+                      		<?php funct_inventario(); ?>
+                       	</tbody>
+                       	</table>
+                   	</div>
+            	</div>
+            	</div>
             </div>
-            <!-- juan -->
-
-<!-- Grafica por años -->
-            <div class="row">
-                  <div class="card mb-3">
-                        <div class="card-header">
-                          <i class="fa fa-area-chart"></i><h2>Ventas anuales de la tienda</h2>
-                                    <div class="form-group">
-                                            <label>Seleccione año:</label>
-                                            <select name="consulta_a" id="consulta_a" class="form-control">
-                                                <!-- Se llena por ajax desde ../Json/procesar.php -->
-                                            </select>
-                                        </div>
-                          </div>
-                        <div class="card-body">
-                          <canvas id="ventasanuales" width="100%" height="30"></canvas>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
-            </div>
-<!-- Grafica por años -->
-
-<!-- Grafica por meses -->
-            <div class="row">
-                  <div class="card mb-3">
-                        <div class="card-header">
-                          <i class="fa fa-area-chart"></i><h2>Ventas Mensuales de la tienda</h2>
-                                    <div class="form-group">
-                                            <label>Seleccione mes:</label>
-                                            <select name="consulta_m" id="consulta_m" class="form-control">
-                                                <!-- Se llena por ajax desde ../Json/procesar.php -->
-                                            </select>
-                                        </div>
-                          </div>
-                        <div class="card-body">
-                          <canvas id="ventasmensuales" width="100%" height="30"></canvas>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
-            </div>
-<!-- Grafica por meses -->
-
-
-        <div class="row">
-                        <div class="col-lg-12">
-                                  <div class="card mb-12">
-                                <div class="card-header">
-                                  <i class="fa fa-bar-chart"></i><h2>Celular mas vendido por ciudad</h2></div>
-                                <div class="card-body">
-                                  <div class="row">
-
-                                      <canvas id="myBarChart" width="100" height="50"></canvas>
-
-                                  </div>
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                              </div>
-                    </div>
-----
-                    <div class="col-lg-6">
-                                  <div class="card mb-3">
-                                <div class="card-header">
-                                  <i class="fa fa-pie-chart"></i><h2>Celular mas vendido en Colombia TOP 5 </h2></div>
-                                <div class="card-body">
-                                  <canvas id="myPieChart" width="100%" height="100"></canvas>
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                              </div>
-                    </div>
-        </div>
-
-            <!-- juan -->
-
-
 
         </div>
         <!-- /#page-wrapper -->
@@ -410,6 +248,49 @@ if($_SESSION["autentica"] != "OK")
     <script src="../vendor/chart.js/Chart.min.js"></script>
     <script src="../js/sb-admin-charts.js"></script>
 
+	<!-- Incluye para las datatables-->
+	<script src="../js/jquery.dataTables.min.js"></script>
+	<script src="../js/dataTables.bootstrap.min.js"></script>
+
+	<!-- Validador numerico -->
+	<script src="../js/jquery.prettynumber.js"></script>
+    
+	<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+			"language":{
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+				"sFirst":    "Primero",
+				"sLast":     "Último",
+				"sNext":     "Siguiente",
+				"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+			}
+			});
+				responsive: true
+        });
+</script>
+<script>
+	$(".number").prettynumber({
+		delimiter : ','
+	});
+</script>
 </body>
 
 </html>

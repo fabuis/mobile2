@@ -4,9 +4,9 @@
 //$config = parse_ini_file('config.ini'); 
 
 $servidor='localhost';
-$usuario='root';
-$contrasena='';
-$bd='tienda';
+$usuario='mobile';
+$contrasena='mobile';
+$bd='mobile';
 
 // Conexión con los datos del 'config.ini' 
 $connection = new mysqli($servidor, $usuario ,$contrasena, $bd); 

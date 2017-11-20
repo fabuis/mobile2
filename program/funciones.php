@@ -1,39 +1,38 @@
-<?php
-session_start();
-if(isset($_SESSION["username"])){ 
-
-header("Content-Type: text/html;charset=utf-8");
+<?php 
+@session_start();  
+if($_SESSION["autentica"] != "OK")
+{ 
+  header("Location: ../program/login.php"); 
+  exit(); 
+} 
 ?>
 <?php
-function funct_despachos($value){
-	include "../../pages/data/conexion.php";
-	$despachos="";
-   	$con_despachos= "SELECT idjur_despacho, jur_des_ciu, jur_des_nom, jur_ciu_nom FROM ". $value .", jur_ciudades WHERE jur_des_ciu=jur_ciu_cod";
-	$result_despachos=$connection->query("SET NAMES 'utf8'");
-	$result_despachos=$connection->query($con_despachos);
-    if($result_despachos->num_rows > 0){		
-	//Se comprueba que tiene elementos
-	 while($resultados_despachos= $result_despachos->fetch_assoc()) {
-			
-			$id_despacho = $resultados_despachos['idjur_despacho'];
-			$idciudad = $resultados_despachos['jur_des_ciu'];
-			$ciudad_nombre = $resultados_despachos['jur_ciu_nom'];
-			$despacho = $resultados_despachos['jur_des_nom'];
 
-			//Salida del mensaje	
-		 	
-		 	$despachos.= '<tr class="odd gradeX">
-							<td>' . $ciudad_nombre . '</td>
-							<td class="center">' . $despacho . '</td>
-							<td class="text-center">
-								<a href="../pages/despachos/edit_despacho.php?id_despacho='.$id_despacho.'" class="cargar"><button type="button" class="btn btn-info btn-circle-mini"><i class="fa fa-edit"></i></button></a>  
-								<a href="../pages/despachos/drop_despacho.php?id_despacho='.$id_despacho.'" class="cargar"><button type="button" class="btn btn-danger btn-circle-mini"><i class="fa fa-remove"></i></button></a>
-							</td>
+function funct_inventario(){
+	include "../program/conexion.php";
+   	$consulta= "SELECT mar.nombre marca, mar.id_marca, dis.id_marca, dis.nombre nombre_cel, dis.descripcion, dis.cantidad, dis.costo FROM tbldispositivos dis, tblmarca mar WHERE dis.id_marca=mar.id_marca";
+	$result=$connection->query("SET NAMES 'utf8'");
+	$result=$connection->query($consulta);
+	$resultado="";
+    if($result->num_rows > 0){
+	 while($datos= $result->fetch_assoc()) {
+			$marca 		= $datos['marca'];
+			$nombre 	= $datos['nombre_cel'];
+			$descripcion= $datos['descripcion'];
+			$cantidad 	= $datos['cantidad'];
+			$costo 		= $datos['costo'];		 	
+		 	$resultado.= '<tr class="odd gradeX">
+							<td>' . $marca . '</td>
+							<td class="center">' . $nombre . '</td>
+							<td class="center">' . $descripcion . '</td>
+							<td class="text-center">' . $cantidad . '</td>	
+							<td class="text-right">$ <span class="number">'.$costo.'</span></td>			
 						</tr>';
 			};
-		
-		};
-	return ($despachos);
+		}else{
+			$resultado= "NO SE ENCONTRARO RESULTADOS EN LA BUSQUEDA";
+		}
+	echo $resultado;
 	}
 ?>
 <?php
@@ -400,11 +399,5 @@ function funct_consultar_ciudades($variable){
 	};
 	};
 	echo $contador_abogados;
-}
-?>
-<?php
-}else{
-	session_destroy();
-	echo '<script> window.location="../../pages/login.php"; </script>';
 }
 ?>

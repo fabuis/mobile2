@@ -25,10 +25,11 @@ include("../program/select.php");
 			$row = $result_acceso->fetch_assoc();
 			$_SESSION["username"]=$username;
 			$_SESSION["perfil"]=$row["id_nivel_acceso"];
+			$_SESSION["autentica"]="OK";
 			//$_SESSION["nombre"]=$row["nomusu"];
 			//$_SESSION["apellido"]=$row["apeusu"];
-	
-			echo '<script> window.location="principal.php"; </script>';
+			header ("Location: principal.php"); 
+			/*echo '<script> window.location="principal.php"; </script>';*/
 		}
 		else{
 			session_destroy();
