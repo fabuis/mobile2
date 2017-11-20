@@ -369,7 +369,7 @@ if($_SESSION["autentica"] != "OK")
                     <div class="col-lg-6">
                                   <div class="card mb-3">
                                 <div class="card-header">
-                                  <i class="fa fa-pie-chart"></i><h2>Celular mas vendido en Colombia TOP 5 </h2></div>
+                                  <i class="fa fa-pie-chart"></i><h2>Celular mas vendido en Colombia TOP 10 </h2></div>
                                 <div class="card-body">
                                   <canvas id="myPieChart" width="100%" height="100"></canvas>
                                 </div>
