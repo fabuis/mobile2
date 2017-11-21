@@ -1,9 +1,11 @@
-<?php
-session_start();
-if(isset($_SESSION["username"])){ 
-
+<?php 
+@session_start();  
+if($_SESSION["autentica"] != "OK")
+{ 
+  header("Location: ..program/login.php"); 
+  exit(); 
+} 
 include "../program/funciones.php";
-header("Content-Type: text/html;charset=utf-8");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,11 +17,10 @@ header("Content-Type: text/html;charset=utf-8");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="../images/Modulo jurídico Icono.png"/>
 
-    <title> Módulo Jurídico - Abogados </title>
-    
-    <!-- ICONO -->
-	<link rel="shortcut icon" type="image/png" href="../images/Modulo jurídico Icono.png"/>
+    <title>Mobile</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,11 +39,10 @@ header("Content-Type: text/html;charset=utf-8");
     <!-- Custom Fonts -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
-    <!-- Tablas -->
+     <!-- Tablas -->
     <link href="../css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
-    
-    <link rel="stylesheet" href="../css/estilo.css">
-
+	 <!-- ESTILO PERSONAL -->
+    <link href="../css/estilo.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -65,14 +65,15 @@ header("Content-Type: text/html;charset=utf-8");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="principal.php" style="padding-left: 50px;"><img src="../images/Módulo jurídico_horizontal.png" width="130px" alt=""></a>
+                <span><a href="principal.php" style="padding-left: 50px; font-size:24px"> Mobile </a></span>
+                
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
 				<li>
 					<?php
-						echo "Bienvenido(a) <span>".$_SESSION["nombre"]." ".$_SESSION["apellido"]."</span>";	
+						echo "Bienvenido(a) <span>".$_SESSION["username"]."</span>";	
 					?>
                </li>
                 <li class="dropdown">
@@ -101,26 +102,86 @@ header("Content-Type: text/html;charset=utf-8");
                             <a href="principal.php"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                         </li>
                         <li>
-                            <a href="procesos.php"><i class="fa fa-refresh fa-spin fa-fw"></i> Procesos</a>
+                            <a href="inventario.php"><i class="fa fa-refresh fa-spin fa-fw"></i> Inventario</a>
                         </li>
                         <li>
-                            <a href="despachos.php"><i class="fa fa-table fa-fw"></i> Despachos</a>
+                            <a href="ventas.php"><i class="fa fa-table fa-fw"></i> Ventas</a>
                         </li>
                         <li>
-                            <a href="codeudores.php"><i class="fa fa-group fa-fw"></i> Codeudores</a>
+                            <a href="usuarios.php"><i class="fa fa-group fa-fw"></i> Usuarios</a>
                         </li>
-                        <li>
-                            <a href="abogados.php"><i class="fa fa-university fa-fw"></i> Abogados</a>
+                          <li>
+                            <a href="empleados.php"><i class="fa fa-edit fa-fw"></i> Empleados</a>
                         </li>
-                        <li>
-                            <a href="bienes.php"><i class="fa fa-car fa-fw"></i> Bienes</a>
-                        </li>
-                        <li>
-                            <a href="parametrizacion.php"><i class="fa fa-gears fa-fw"></i> Parametrización</a>
-                        </li>
-                        <li>
-                            <a href="liquidacion.php"><i class="fa fa-edit fa-fw"></i> Liquidación Procesos</a>
-                        </li>
+                      
+                       <!-- <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="panels-wells.html">Panels and Wells</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html"> Icons</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level 
+                        </li>-->
+                       <!-- <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Second Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">Third Level Item</a>     
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item<span class="fa arrow"></span></a>
+                                            	<ul class="nav nav-cuarto-level">
+                                                    <li>
+                                                        <a href="#">Cuarto Level Item</a>        
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Cuarto Level Item</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Cuarto Level Item</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Cuarto Level Item</a>
+                                                    </li>
+                                                </ul>  
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Third Level Item</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level 
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level 
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -131,41 +192,35 @@ header("Content-Type: text/html;charset=utf-8");
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Abogados</h1>
+                    <h1 class="page-header"> Ventas</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+     
             <div class="row">
-            	<div class="col-lg-10">
-            		<a href="abogados/add_abogado.php" class="cargar"><button type="button" class="btn btn-outline btn-primary">Agregar Abogado</button></a>
-                         <hr>
+    			<div class="col-lg-12">
             	<div class="panel-body">
               		<div class="dataTable_wrapper">
                     	<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:13px">
                         	<thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Cedula</th>
-                                <th>Tarjeta Profesional</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Dirección</th>
-                                <th>Teléfono</th>
-                                <th>Correo</th>
+                                <th>Dispositivo</th>
+                                <th>Vendedor</th>
+								<th>Usuario</th>
                                 <th>Fecha</th>
-                                <th>Opciones</th>
+                                <th>Valor</th>
+                                <th>Cantidad</th>
                             </tr>
                             </thead>
-                      	<tbody>  	
-							   	<?php funct_abogados(); ?>
+                      	<tbody>
+                      		<?php funct_ventas(); ?>
                        	</tbody>
                        	</table>
                    	</div>
             	</div>
             	</div>
-			</div>
+            </div>
 
-            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -180,8 +235,7 @@ header("Content-Type: text/html;charset=utf-8");
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../js/metisMenu.min.js"></script>
-	
-   	
+
     <!-- Morris Charts JavaScript -->
     <script src="../js/raphael-min.js"></script>
     <script src="../js/morris.min.js"></script>
@@ -189,13 +243,19 @@ header("Content-Type: text/html;charset=utf-8");
 
     <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
-	
-	<script src="../js/jquery.validate.min.js"></script>
-	<script src="../js/jquery.prettynumber.js"></script>
-	
+
+    <!-- Custom scripts for this page-->
+    
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../js/sb-admin-charts.js"></script>
+
+	<!-- Incluye para las datatables-->
 	<script src="../js/jquery.dataTables.min.js"></script>
 	<script src="../js/dataTables.bootstrap.min.js"></script>
-  
+
+	<!-- Validador numerico -->
+	<script src="../js/jquery.prettynumber.js"></script>
+    
 	<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
@@ -226,23 +286,12 @@ header("Content-Type: text/html;charset=utf-8");
 			});
 				responsive: true
         });
- </script>
-  <script>
-    $(document).ready(function() {
-		$(".cargar").click(function() {
-			var url=$(this).attr("href");
-			$("#page-wrapper").load(url);
-			return false;			
-		});
-   	
+</script>
+<script>
+	$(".number").prettynumber({
+		delimiter : ','
 	});
 </script>
 </body>
 
 </html>
-<?php
-}else{
-	session_destroy();
-	echo '<script> window.location="../../pages/login.php"; </script>';
-}
-?>

@@ -196,7 +196,7 @@ include "../program/funciones.php";
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Usuarios - Clientes</h1>
+                    <h1 class="page-header"> Empleados</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -208,26 +208,48 @@ include "../program/funciones.php";
                     	<table  cellspacing="0" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:13px">
                         	<thead>
                             <tr>
-                                <th>Tipo</th>
+                                <th>Usuario</th>
+								<th>Fecha Creación</th>
                                 <th>Documento</th>
 								<th>Tipo Documento</th>
-                                <th>Razon Social</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-								<th>Ciudad</th>
-								<th>Fecha</th>
-								<th>Correo</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+								<th>Salario</th>
+								<th>Cargo</th>
 								<th>Teléfono</th>
+								<th>Ciudad</th>
 								<th>Dirección</th>
                             </tr>
                             </thead>
                       	<tbody>
-                      		<?php funct_usuarios(); ?>
+                      		<?php funct_empleados(); ?>
                        	</tbody>
                        	</table>
                    	</div>
             	</div>
             	</div>
+				
+				
+            </div>
+			    <div class="row">
+ 
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Ventas por empleados
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+       
+                <!-- /.col-lg-6 -->
             </div>
 
         </div>
@@ -245,23 +267,18 @@ include "../program/funciones.php";
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../js/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
+	    <!-- Morris Charts JavaScript -->
     <script src="../js/raphael-min.js"></script>
     <script src="../js/morris.min.js"></script>
     <script src="../js/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
+	
+	  <!-- Custom Theme JavaScript -->
     <script src="../js/sb-admin-2.js"></script>
-
-    <!-- Custom scripts for this page-->
-    
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../js/sb-admin-charts.js"></script>
-
+	
 	<!-- Incluye para las datatables-->
 	<script src="../js/jquery.dataTables.min.js"></script>
 	<script src="../js/dataTables.bootstrap.min.js"></script>
-
+	
 	<!-- Validador numerico -->
 	<script src="../js/jquery.prettynumber.js"></script>
     
@@ -310,6 +327,7 @@ include "../program/funciones.php";
 		delimiter : ','
 	});
 </script>
+
 </body>
 
 </html>
