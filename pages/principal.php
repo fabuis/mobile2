@@ -186,7 +186,7 @@ include "../program/funciones.php";
                                 </div>
                             </div>
                         </div>
-                        <a href="facturacion.php">
+                        <a href="ventas.php">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver Detalles</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -230,7 +230,7 @@ include "../program/funciones.php";
                                 </div>
                             </div>
                         </div>
-                        <a href="salidas.php">
+                        <a href="empleados.php">
                             <div class="panel-footer">
                                 <span class="pull-left">Ver Detalles</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
